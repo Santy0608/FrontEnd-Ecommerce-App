@@ -1,0 +1,176 @@
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <form (ngSubmit)="onSubmit(productForm)" #productForm="ngForm">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="text-center">
+                                    <h2>
+                                        {{
+                                            product.id > 0
+                                            ? "Update Product"
+                                            : "Add Product"
+                                        }}
+                                    </h2>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <input
+                                            type="hidden"
+                                            name="idRepuesto"
+                                            [(ngModel)]="repuesto.idRepuesto"
+                                        />
+                                        <label for="sku" class="form-label">
+                                            SKU
+                                        </label>
+                                        <input 
+                                        type="text"
+                                        placeholder="Type the SKU of the product"
+                                        #sku="ngModel"
+                                        name="sku"
+                                        [(ngModel)]="product.sku"
+                                        class="form-control my-2"
+                                        required
+                                        >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">
+                                            Name
+                                        </label>
+                                        <input 
+                                            type="text"
+                                            placeholder="Type the name of the product"
+                                            #name="ngModel"
+                                            name="name"
+                                            [(ngModel)]="product.name"
+                                            class="form-control my-2"
+                                            required
+                                        >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">
+                                            Description
+                                        </label>
+                                        <input
+                                            type="text"
+                                            placeholder="Type the description of the product"
+                                            #description="ngModel"
+                                            name="description"
+                                            [(ngModel)]="product.description"
+                                            class="form-control my-2"
+                                            required
+                                        >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="unitPrice" class="form-label">
+                                            Unit Price
+                                        </label>
+                                        <input
+                                            type="number"
+                                            placeholder="Type the unit price of the product"
+                                            #unitPrice="ngModel"
+                                            name="unitPrice"
+                                            [(ngModel)]="product.unitPrice"
+                                            class="form-control my-2"
+                                            required
+                                        >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="imageUrl" class="form-label">
+                                            Image Url
+                                        </label>
+                                        <input
+                                            type="url"
+                                            placeholder="Type the image url of the product"
+                                            #imageUrl="ngModel"
+                                            name="imageUrl"
+                                            [(ngModel)]="product.imageUrl"
+                                            class="form-control my-2"
+                                            required
+                                        >
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input
+                                            type="checkbox"
+                                            id="active"
+                                            name="active"
+                                            [(ngModel)]="product.active"
+                                            class="form-check-input"
+                                        >
+                                        <label for="active" class="form-check-label">
+                                            Active
+                                        </label>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="unitsInStock" class="form-label">
+                                            Units in Stock
+                                        </label>
+                                        <input type="number"
+                                               placeholder="Type units in stock of the product"
+                                               #unitsInStock="ngModel"
+                                               required
+                                               name="unitsInStock"
+                                               [(ngModel)]="product.unitsInStock"
+                                               class="form-control"
+                                        >        
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="dateCreated" class="form-label">
+                                            Date Created
+                                        </label>
+                                        <input type="date"
+                                                placeholder="Type the date of the product"
+                                                #dateCreated="ngModel"
+                                                required
+                                                name="dateCreated"
+                                                [(ngModel)]="product.dateCreated"
+                                                class="form-control"
+                                        >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="lastUpdated" class="form-label">
+                                            Last Updated
+                                        </label>
+                                        <input type="date"
+                                            placeholder="Type the last date of the product"
+                                            #lastUpdated="ngModel"
+                                            required
+                                            [(ngModel)]="product.lastUpdated"
+                                            class="form-control"
+                                        >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label
+                                            *ngIf="productCategories.length > 0"
+                                            for="productCategory"
+                                            class="form-label"
+                                            >Product Category</label
+                                        >
+                                        <select
+                                            [(ngModel)]="product.productCategoryId"
+                                            name="productCategoryId"
+                                            required
+                                            class="form-control my-2"
+                                        >
+                                            <option [ngValue]="null" disabled selected>Select a Product Category</option>
+                                            <option *ngFor="let productCategory of productCategories" [ngValue]="productCategory.id">
+                                            {{ productCategory.categoryName }}
+                                            </option> 
+                                        </select>
+                                    </div>
+                                    <div>
+                                         <button type="submit" class="btn btn-primary m-2">
+                                            {{ product.id > 0 ? "Update" : "Create" }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
